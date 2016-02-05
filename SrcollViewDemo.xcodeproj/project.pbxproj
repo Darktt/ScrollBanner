@@ -12,6 +12,9 @@
 		5233DBF11C633C00002EC738 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5233DBEF1C633C00002EC738 /* Main.storyboard */; };
 		5233DBF31C633C00002EC738 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5233DBF21C633C00002EC738 /* Assets.xcassets */; };
 		5233DBF61C633C00002EC738 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5233DBF41C633C00002EC738 /* LaunchScreen.storyboard */; };
+		5233DBFE1C633CCE002EC738 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5233DBFD1C633CCE002EC738 /* UIViewExtension.swift */; };
+		5233DC001C634586002EC738 /* UIScrollViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5233DBFF1C634586002EC738 /* UIScrollViewExtension.swift */; };
+		5233DC021C634F47002EC738 /* UIEdgeInsetsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5233DC011C634F47002EC738 /* UIEdgeInsetsExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		5233DBF21C633C00002EC738 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5233DBF51C633C00002EC738 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5233DBF71C633C00002EC738 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5233DBFD1C633CCE002EC738 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		5233DBFF1C634586002EC738 /* UIScrollViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtension.swift; sourceTree = "<group>"; };
+		5233DC011C634F47002EC738 /* UIEdgeInsetsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIEdgeInsetsExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 		5233DBEA1C633C00002EC738 /* SrcollViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				52408B8C1C645AF90011FB81 /* Extensions */,
 				5233DBEB1C633C00002EC738 /* AppDelegate.swift */,
 				5233DBED1C633C00002EC738 /* ViewController.swift */,
 				5233DBEF1C633C00002EC738 /* Main.storyboard */,
@@ -62,6 +69,16 @@
 				5233DBF71C633C00002EC738 /* Info.plist */,
 			);
 			path = SrcollViewDemo;
+			sourceTree = "<group>";
+		};
+		52408B8C1C645AF90011FB81 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5233DC011C634F47002EC738 /* UIEdgeInsetsExtension.swift */,
+				5233DBFD1C633CCE002EC738 /* UIViewExtension.swift */,
+				5233DBFF1C634586002EC738 /* UIScrollViewExtension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5233DBFE1C633CCE002EC738 /* UIViewExtension.swift in Sources */,
+				5233DC021C634F47002EC738 /* UIEdgeInsetsExtension.swift in Sources */,
 				5233DBEE1C633C00002EC738 /* ViewController.swift in Sources */,
 				5233DBEC1C633C00002EC738 /* AppDelegate.swift in Sources */,
+				5233DC001C634586002EC738 /* UIScrollViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +304,7 @@
 				5233DBFC1C633C00002EC738 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
