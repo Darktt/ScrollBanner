@@ -25,51 +25,83 @@ class ViewController: UIViewController, UIScrollViewDelegate
         var leftViews = Array<UIView>()
         var rightViews = Array<UIView>()
         var views = Array<UIView>()
-        var offsetX: CGFloat = 0
-        let width: CGFloat = CGRectGetWidth(screenRect) / 2.0
-        let height: CGFloat = CGRectGetWidth(screenRect) / 16.0 * 9.0
         
         for index in 1...5 {
-            let frame = CGRect(x: offsetX, y: 0.0, width: width, height: height)
             var backgroundColor: UIColor = self.colorForIndex(index - 1)
             
             // Setup left view
-            let leftView = UIView(frame: frame, backgrouneColor: backgroundColor)
+            let leftView = UIView(frame: CGRect.zero, backgrouneColor: backgroundColor)
             leftViews.append(leftView)
             
             backgroundColor = self.colorForIndex(index)
             
             // Setup center view
-            let view = UIView(frame: frame, backgrouneColor: backgroundColor)
+            let view = UIView(frame: CGRect.zero, backgrouneColor: backgroundColor)
             views.append(view)
             
             backgroundColor = self.colorForIndex(index + 1)
             
             // Setup right view
-            let rightView = UIView(frame: frame, backgrouneColor: backgroundColor)
+            let rightView = UIView(frame: CGRect.zero, backgrouneColor: backgroundColor)
             rightViews.append(rightView)
-            
-            offsetX += width
         }
         
-        func SetupScrollViewParameterWithScrollView(_scrollView: UIScrollView, views: Array<UIView>) {
+        func SetupScrollViewParameterWithScrollView(_scrollView: UIScrollView, forSubviews views: Array<UIView>)
+        {
             _scrollView.pagingEnabled = true
             _scrollView.showsHorizontalScrollIndicator = false
             _scrollView.showsVerticalScrollIndicator = false
+            _scrollView.clipsToBounds = true
             _scrollView.delegate = self
+            
             _scrollView.addSubviews(views, scrollOrientation: [.Horizontal])
         }
         
         if let leftSubScrollView = self.leftSubScrollView {
-            SetupScrollViewParameterWithScrollView(leftSubScrollView, views: leftViews)
+            SetupScrollViewParameterWithScrollView(leftSubScrollView, forSubviews: leftViews)
         }
         
         if let scrollView = self.scrollView {
-            SetupScrollViewParameterWithScrollView(scrollView, views: views)
+            SetupScrollViewParameterWithScrollView(scrollView, forSubviews: views)
         }
         
         if let rightSubScrollView = self.rightSubScrollView {
-            SetupScrollViewParameterWithScrollView(rightSubScrollView, views: rightViews)
+            SetupScrollViewParameterWithScrollView(rightSubScrollView, forSubviews: rightViews)
+        }
+    }
+    
+    override func viewDidLayoutSubviews()
+    {
+        var offsetX: CGFloat = 0.0
+        let width: CGFloat = CGRectGetWidth(self.scrollView!.bounds)
+        let height: CGFloat = CGRectGetHeight(self.scrollView!.bounds)
+        
+        let leftViews: Array<UIView> = self.leftSubScrollView!.subviews
+        let midViews: Array<UIView> = self.scrollView!.subviews
+        let rightViews: Array<UIView> = self.rightSubScrollView!.subviews
+        
+        for index in 0 ..< leftViews.count {
+            let frame = CGRect(x: offsetX, width: width, height: height)
+            
+            let leftView = leftViews[index]
+            leftView.frame = frame
+            
+            let midView = midViews[index]
+            midView.frame = frame
+            
+            let rightView = rightViews[index]
+            rightView.frame = frame
+            
+            offsetX += width
+        }
+        
+        // Update content size
+        if let lastView = midViews.last {
+            let contentSize = CGSize(width: CGRectGetMaxX(lastView.frame))
+            
+            self.leftSubScrollView?.contentSize = contentSize
+            self.scrollView?.contentSize = contentSize
+            self.rightSubScrollView?.contentSize = contentSize
         }
     }
     
@@ -113,7 +145,7 @@ class ViewController: UIViewController, UIScrollViewDelegate
         case -1, 4, 9:
             color = UIColor.purpleColor()
             
-        case 0 , 5, 10:
+        case 0, 5, 10:
             color = UIColor.blueColor()
             
         default:

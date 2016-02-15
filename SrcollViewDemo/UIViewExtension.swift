@@ -24,4 +24,9 @@ public extension UIView
             self.addSubview(view)
         }
     }
+    
+    public func addSubviews(views: UIView ...)
+    {
+        self.addSubviews(views)
+    }
 }
